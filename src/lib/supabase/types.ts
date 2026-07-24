@@ -854,6 +854,84 @@ export type Database = {
           },
         ]
       }
+      transferencias: {
+        Row: {
+          cantidad: number
+          confirmado_por_id: string | null
+          estado: string
+          fecha_confirmacion: string | null
+          fecha_solicitud: string
+          id: string
+          notas: string | null
+          producto_id: string
+          solicitado_por_id: string | null
+          ubicacion_destino_id: string
+          ubicacion_origen_id: string
+        }
+        Insert: {
+          cantidad: number
+          confirmado_por_id?: string | null
+          estado?: string
+          fecha_confirmacion?: string | null
+          fecha_solicitud?: string
+          id?: string
+          notas?: string | null
+          producto_id: string
+          solicitado_por_id?: string | null
+          ubicacion_destino_id: string
+          ubicacion_origen_id: string
+        }
+        Update: {
+          cantidad?: number
+          confirmado_por_id?: string | null
+          estado?: string
+          fecha_confirmacion?: string | null
+          fecha_solicitud?: string
+          id?: string
+          notas?: string | null
+          producto_id?: string
+          solicitado_por_id?: string | null
+          ubicacion_destino_id?: string
+          ubicacion_origen_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "transferencias_confirmado_por_id_fkey"
+            columns: ["confirmado_por_id"]
+            isOneToOne: false
+            referencedRelation: "usuarios"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "transferencias_producto_id_fkey"
+            columns: ["producto_id"]
+            isOneToOne: false
+            referencedRelation: "productos"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "transferencias_solicitado_por_id_fkey"
+            columns: ["solicitado_por_id"]
+            isOneToOne: false
+            referencedRelation: "usuarios"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "transferencias_ubicacion_destino_id_fkey"
+            columns: ["ubicacion_destino_id"]
+            isOneToOne: false
+            referencedRelation: "ubicaciones"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "transferencias_ubicacion_origen_id_fkey"
+            columns: ["ubicacion_origen_id"]
+            isOneToOne: false
+            referencedRelation: "ubicaciones"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       ubicaciones: {
         Row: {
           activa: boolean

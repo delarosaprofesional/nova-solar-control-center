@@ -10,6 +10,7 @@ const NAV_LINKS = [
   { href: "/compras", label: "Compras", roles: ["Administrador", "Almacén", "Contabilidad", "Dueño"] },
   { href: "/ventas", label: "Ventas", roles: ["Administrador", "Dueño", "Contabilidad", "Tienda"] },
   { href: "/ordenes", label: "Órdenes", roles: ["Administrador", "Dueño", "Contabilidad", "Supervisor"] },
+  { href: "/transferencias", label: "Transferencias", roles: ["Administrador", "Dueño", "Tienda", "Almacén"] },
   { href: "/pagos-brigadas", label: "Pagos Brigadas", roles: ["Administrador", "Dueño", "Contabilidad"] },
   { href: "/gastos", label: "Gastos", roles: ["Administrador", "Dueño", "Contabilidad"] },
   { href: "/catalogos", label: "Catálogos", roles: ["Administrador"] },
