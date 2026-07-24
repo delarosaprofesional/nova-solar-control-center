@@ -21,10 +21,11 @@ function EstadoBadge({ estado }: { estado: string | null }) {
 
 async function InventarioTable({ soloCritico }: { soloCritico: boolean }) {
   const supabase = await createClient();
-  const { data, error } = await supabase
-    .from(soloCritico ? "inventario_critico" : "inventario_actual")
-    .select("producto_id, ubicacion_id, disponible, costo_promedio, valor_disponible, stock_minimo, estado_stock, productos(nombre_producto), ubicaciones(nombre_ubicacion)")
-    .order("producto_id");
+  const columns =
+    "producto_id, ubicacion_id, disponible, costo_promedio, valor_disponible, stock_minimo, estado_stock, productos(nombre_producto), ubicaciones(nombre_ubicacion)";
+  const { data, error } = soloCritico
+    ? await supabase.from("inventario_critico").select(columns).order("producto_id")
+    : await supabase.from("inventario_actual").select(columns).order("producto_id");
 
   if (error) {
     return <p className="text-sm text-destructive">Error al cargar inventario: {error.message}</p>;
