@@ -49,6 +49,24 @@ export type Database = {
           },
         ]
       }
+      categorias_producto: {
+        Row: {
+          activo: boolean
+          id: string
+          nombre: string
+        }
+        Insert: {
+          activo?: boolean
+          id?: string
+          nombre: string
+        }
+        Update: {
+          activo?: boolean
+          id?: string
+          nombre?: string
+        }
+        Relationships: []
+      }
       clientes: {
         Row: {
           activo: boolean
@@ -685,7 +703,7 @@ export type Database = {
       productos: {
         Row: {
           activo: boolean
-          categoria: string
+          categoria_id: string
           costo_promedio: number | null
           id: string
           marca: string | null
@@ -700,7 +718,7 @@ export type Database = {
         }
         Insert: {
           activo?: boolean
-          categoria: string
+          categoria_id: string
           costo_promedio?: number | null
           id?: string
           marca?: string | null
@@ -715,7 +733,7 @@ export type Database = {
         }
         Update: {
           activo?: boolean
-          categoria?: string
+          categoria_id?: string
           costo_promedio?: number | null
           id?: string
           marca?: string | null
@@ -728,7 +746,15 @@ export type Database = {
           tipo_producto?: string
           unidad_medida?: string
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "productos_categoria_id_fkey"
+            columns: ["categoria_id"]
+            isOneToOne: false
+            referencedRelation: "categorias_producto"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       proveedores: {
         Row: {

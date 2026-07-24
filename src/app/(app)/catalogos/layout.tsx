@@ -4,6 +4,7 @@ import { getCurrentUserContext } from "@/lib/nova/current-user";
 
 const SUBNAV = [
   { href: "/catalogos/productos", label: "Productos" },
+  { href: "/catalogos/categorias-producto", label: "Categorías de Producto" },
   { href: "/catalogos/proveedores", label: "Proveedores" },
   { href: "/catalogos/clientes", label: "Clientes" },
   { href: "/catalogos/ubicaciones", label: "Ubicaciones" },

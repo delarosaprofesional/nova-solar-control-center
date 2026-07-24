@@ -13,9 +13,14 @@ import {
 } from "@/components/ui/select";
 import { createProducto } from "./actions";
 
+type Option = { id: string; label: string };
 type ActionState = { error: string | null };
 
-export function ProductoForm() {
+function labelFor(options: Option[]) {
+  return (value: string) => options.find((o) => o.id === value)?.label ?? value;
+}
+
+export function ProductoForm({ categorias }: { categorias: Option[] }) {
   const [state, formAction, pending] = useActionState<ActionState, FormData>(
     async (_prev, formData) => createProducto(formData),
     { error: null }
@@ -43,17 +48,22 @@ export function ProductoForm() {
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="categoria">Categoría</Label>
-        <Select name="categoria" required>
-          <SelectTrigger id="categoria" className="w-full">
-            <SelectValue placeholder="Selecciona" />
+        <Label htmlFor="categoria_id">Categoría</Label>
+        <Select name="categoria_id" required>
+          <SelectTrigger id="categoria_id" className="w-full">
+            <SelectValue placeholder="Selecciona">{labelFor(categorias)}</SelectValue>
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="Panel">Panel</SelectItem>
-            <SelectItem value="Inversor">Inversor</SelectItem>
-            <SelectItem value="Kit">Kit</SelectItem>
+            {categorias.map((c) => (
+              <SelectItem key={c.id} value={c.id}>
+                {c.label}
+              </SelectItem>
+            ))}
           </SelectContent>
         </Select>
+        <p className="text-xs text-muted-foreground">
+          ¿Falta la categoría que necesitas? Créala primero en la pestaña &quot;Categorías de Producto&quot;.
+        </p>
       </div>
 
       <div className="space-y-2">

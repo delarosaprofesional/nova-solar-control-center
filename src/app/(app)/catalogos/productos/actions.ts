@@ -9,7 +9,7 @@ export async function createProducto(formData: FormData) {
   const { error } = await supabase.from("productos").insert({
     nombre_producto: String(formData.get("nombre_producto")),
     tipo_producto: String(formData.get("tipo_producto")),
-    categoria: String(formData.get("categoria")),
+    categoria_id: String(formData.get("categoria_id")),
     unidad_medida: String(formData.get("unidad_medida")),
     marca: String(formData.get("marca") || "") || null,
     modelo: String(formData.get("modelo") || "") || null,

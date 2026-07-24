@@ -12,10 +12,13 @@ function money(n: number | null) {
 
 export default async function ProductosPage() {
   const supabase = await createClient();
-  const { data: productos, error } = await supabase
-    .from("productos")
-    .select("id, nombre_producto, tipo_producto, categoria, unidad_medida, marca, modelo, sku, precio_sugerido, stock_minimo, activo")
-    .order("nombre_producto");
+  const [{ data: productos, error }, { data: categorias }] = await Promise.all([
+    supabase
+      .from("productos")
+      .select("id, nombre_producto, tipo_producto, unidad_medida, marca, modelo, sku, precio_sugerido, stock_minimo, activo, categorias_producto(nombre)")
+      .order("nombre_producto"),
+    supabase.from("categorias_producto").select("id, nombre").eq("activo", true).order("nombre"),
+  ]);
 
   return (
     <div className="space-y-6">
@@ -24,7 +27,7 @@ export default async function ProductosPage() {
           <CardTitle>Nuevo producto</CardTitle>
         </CardHeader>
         <CardContent>
-          <ProductoForm />
+          <ProductoForm categorias={(categorias ?? []).map((c) => ({ id: c.id, label: c.nombre }))} />
         </CardContent>
       </Card>
 
@@ -56,7 +59,7 @@ export default async function ProductosPage() {
                   <TableRow key={p.id}>
                     <TableCell className="font-medium">{p.nombre_producto}</TableCell>
                     <TableCell>{p.tipo_producto.replaceAll("_", " ")}</TableCell>
-                    <TableCell>{p.categoria}</TableCell>
+                    <TableCell>{(p.categorias_producto as { nombre: string } | null)?.nombre ?? "—"}</TableCell>
                     <TableCell>{p.unidad_medida}</TableCell>
                     <TableCell className="text-right">{money(p.precio_sugerido)}</TableCell>
                     <TableCell className="text-right">{p.stock_minimo}</TableCell>
