@@ -12,6 +12,7 @@ const NAV_LINKS = [
   { href: "/ordenes", label: "Órdenes", roles: ["Administrador", "Dueño", "Contabilidad", "Supervisor"] },
   { href: "/pagos-brigadas", label: "Pagos Brigadas", roles: ["Administrador", "Dueño", "Contabilidad"] },
   { href: "/gastos", label: "Gastos", roles: ["Administrador", "Dueño", "Contabilidad"] },
+  { href: "/catalogos", label: "Catálogos", roles: ["Administrador"] },
 ];
 
 export default async function AppLayout({ children }: { children: React.ReactNode }) {
