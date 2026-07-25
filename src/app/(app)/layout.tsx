@@ -6,14 +6,14 @@ import { signOut } from "@/app/login/actions";
 
 const NAV_LINKS = [
   { href: "/dashboard", label: "Dashboard", roles: ["Administrador", "Dueño"] },
-  { href: "/", label: "Inventario", roles: ["Administrador", "Dueño", "Almacén", "Tienda"] },
-  { href: "/compras", label: "Compras", roles: ["Administrador", "Almacén", "Contabilidad", "Dueño"] },
-  { href: "/ventas", label: "Ventas", roles: ["Administrador", "Dueño", "Contabilidad", "Tienda"] },
+  { href: "/", label: "Inventario", roles: ["Administrador", "Dueño", "Almacén", "Tienda", "Supervisor"] },
+  { href: "/compras", label: "Compras", roles: ["Administrador", "Almacén", "Contabilidad", "Dueño", "Supervisor"] },
+  { href: "/ventas", label: "Ventas", roles: ["Administrador", "Dueño", "Contabilidad", "Tienda", "Supervisor"] },
   { href: "/ordenes", label: "Órdenes", roles: ["Administrador", "Dueño", "Contabilidad", "Supervisor"] },
-  { href: "/transferencias", label: "Transferencias", roles: ["Administrador", "Dueño", "Tienda", "Almacén"] },
-  { href: "/pagos-brigadas", label: "Pagos Brigadas", roles: ["Administrador", "Dueño", "Contabilidad"] },
-  { href: "/gastos", label: "Gastos", roles: ["Administrador", "Dueño", "Contabilidad"] },
-  { href: "/catalogos", label: "Catálogos", roles: ["Administrador"] },
+  { href: "/transferencias", label: "Transferencias", roles: ["Administrador", "Dueño", "Tienda", "Almacén", "Supervisor"] },
+  { href: "/pagos-brigadas", label: "Pagos Brigadas", roles: ["Administrador", "Dueño", "Contabilidad", "Supervisor"] },
+  { href: "/gastos", label: "Gastos", roles: ["Administrador", "Dueño", "Contabilidad", "Supervisor"] },
+  { href: "/catalogos", label: "Catálogos", roles: ["Administrador", "Supervisor"] },
 ];
 
 export default async function AppLayout({ children }: { children: React.ReactNode }) {

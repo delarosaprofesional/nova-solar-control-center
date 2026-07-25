@@ -16,7 +16,7 @@ export default async function TransferenciasPage() {
   const ctx = await getCurrentUserContext();
   const supabase = await createClient();
   const puedeSolicitar = ctx?.rol === "Administrador" || ctx?.rol === "Tienda" || ctx?.rol === "Almacén";
-  const puedeConfirmar = ctx?.rol === "Administrador";
+  const puedeConfirmar = ctx?.rol === "Administrador" || ctx?.rol === "Supervisor";
 
   const [{ data: transferencias, error }, { data: productos }, { data: ubicaciones }] = await Promise.all([
     supabase

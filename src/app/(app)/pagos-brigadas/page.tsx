@@ -12,7 +12,7 @@ function money(n: number | null) {
 export default async function PagosBrigadasPage() {
   const ctx = await getCurrentUserContext();
   const supabase = await createClient();
-  const puedeRegistrar = ctx?.rol === "Administrador" || ctx?.rol === "Contabilidad";
+  const puedeRegistrar = ctx?.rol === "Administrador" || ctx?.rol === "Contabilidad" || ctx?.rol === "Supervisor";
 
   const [{ data: pagos, error }, { data: ordenes }, { data: brigadas }, { data: trabajadores }] = await Promise.all([
     supabase

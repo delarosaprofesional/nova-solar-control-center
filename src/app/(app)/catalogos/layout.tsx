@@ -14,7 +14,7 @@ const SUBNAV = [
 
 export default async function CatalogosLayout({ children }: { children: React.ReactNode }) {
   const ctx = await getCurrentUserContext();
-  if (ctx?.rol !== "Administrador") redirect("/");
+  if (ctx?.rol !== "Administrador" && ctx?.rol !== "Supervisor") redirect("/");
 
   return (
     <div className="space-y-6">
