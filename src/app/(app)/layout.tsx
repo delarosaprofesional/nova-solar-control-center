@@ -1,9 +1,9 @@
-import Link from "next/link";
 import { redirect } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { getCurrentUserContext } from "@/lib/nova/current-user";
 import { signOut } from "@/app/login/actions";
 import { UnsavedChangesGuard } from "@/components/nova/unsaved-changes-guard";
+import { NavLinks } from "@/components/nova/nav-links";
 
 const NAV_LINKS = [
   { href: "/dashboard", label: "Dashboard", roles: ["Administrador", "Dueño"] },
@@ -30,13 +30,7 @@ export default async function AppLayout({ children }: { children: React.ReactNod
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3">
           <div className="flex items-center gap-6">
             <span className="font-semibold">Nova Solar</span>
-            <nav className="flex items-center gap-4 text-sm">
-              {visibleLinks.map((link) => (
-                <Link key={link.href} href={link.href} className="text-muted-foreground hover:text-foreground">
-                  {link.label}
-                </Link>
-              ))}
-            </nav>
+            <NavLinks links={visibleLinks} />
           </div>
           <div className="flex items-center gap-3 text-sm">
             <span className="text-muted-foreground">
