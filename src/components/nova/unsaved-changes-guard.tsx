@@ -31,7 +31,8 @@ export function UnsavedChangesGuard() {
       const submitButton = target.closest("button[type='submit'], input[type='submit']") as HTMLElement | null;
       const submitForm = submitButton?.closest("form") ?? null;
 
-      const leavingViaLink = link && link.origin === window.location.origin;
+      const leavingViaLink =
+        link && link.origin === window.location.origin && link.target !== "_blank";
       const leavingViaOtherForm = submitButton && submitForm !== dirtyForm;
 
       if (leavingViaLink || leavingViaOtherForm) {

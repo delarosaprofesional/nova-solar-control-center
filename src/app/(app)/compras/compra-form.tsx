@@ -1,7 +1,8 @@
 "use client";
 
 import { useActionState } from "react";
-import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import {
@@ -45,7 +46,17 @@ export function CompraForm({
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="producto_id">Producto</Label>
+        <div className="flex items-center justify-between gap-2">
+          <Label htmlFor="producto_id">Producto</Label>
+          <Link
+            href="/catalogos/productos"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={buttonVariants({ variant: "outline", size: "xs" })}
+          >
+            Agregar producto
+          </Link>
+        </div>
         <Select name="producto_id" required>
           <SelectTrigger id="producto_id" className="w-full">
             <SelectValue placeholder="Selecciona un producto">{labelFor(productos)}</SelectValue>
@@ -87,7 +98,17 @@ export function CompraForm({
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="ubicacion_entrada_id">Ubicación de entrada</Label>
+        <div className="flex items-center justify-between gap-2">
+          <Label htmlFor="ubicacion_entrada_id">Ubicación de entrada</Label>
+          <Link
+            href="/catalogos/ubicaciones"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={buttonVariants({ variant: "outline", size: "xs" })}
+          >
+            Agregar ubicación
+          </Link>
+        </div>
         <Select name="ubicacion_entrada_id" required>
           <SelectTrigger id="ubicacion_entrada_id" className="w-full">
             <SelectValue placeholder="Selecciona una ubicación">{labelFor(ubicaciones)}</SelectValue>
