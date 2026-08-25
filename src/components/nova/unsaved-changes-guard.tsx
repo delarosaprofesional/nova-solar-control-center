@@ -31,8 +31,12 @@ export function UnsavedChangesGuard() {
       const submitButton = target.closest("button[type='submit'], input[type='submit']") as HTMLElement | null;
       const submitForm = submitButton?.closest("form") ?? null;
 
+      // Links marked data-skip-unsaved-guard (e.g. Compras' "Agregar
+      // producto"/"Agregar ubicación" shortcuts) save their own draft before
+      // navigating and restore it on return, so the warning would be noise.
+      const skipsGuard = link?.closest("[data-skip-unsaved-guard]") != null;
       const leavingViaLink =
-        link && link.origin === window.location.origin && link.target !== "_blank";
+        link && link.origin === window.location.origin && link.target !== "_blank" && !skipsGuard;
       const leavingViaOtherForm = submitButton && submitForm !== dirtyForm;
 
       if (leavingViaLink || leavingViaOtherForm) {
